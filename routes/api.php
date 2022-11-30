@@ -29,6 +29,23 @@ Route::post('/newrequest', [requestsController::class, 'addRequest']);
 
 Route::get('/pupils/{userid}', [requestsController::class, 'showUserPupils']);
 
+Route::get('/schools', [schoolsController::class, 'showAllSchools']);
+
+Route::delete('/deleteschool/{id}', [schoolsController::class, 'deleteSchool']);
+
+Route::get('/school/{id}', [schoolsController::class, 'showSingleSchool']);
+
+Route::put('/school/{id}', [schoolsController::class, 'updateSchool']);
+
+Route::post('/addschool', [schoolsController::class, 'newSchool']);
+
+Route::get('/showallrequests', [requestsController::class, 'showAllRequests']);
+
+Route::put('/confirmrequest/{id}', [requestsController::class, 'confirmRequest']);
+
+Route::get('/search', [schoolsController::class, 'searchSchools']);
+
+
 
 Route::post('/register', [authorizationController::class, 'register']);
 
