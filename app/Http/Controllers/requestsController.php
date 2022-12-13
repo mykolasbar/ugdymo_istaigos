@@ -96,4 +96,9 @@ class requestsController extends Controller
         $order->confirmed = true;
         $order->save();
     }
+
+    public function showPupil($id) {
+        $pupil = Requests::find($id);
+        return $pupil;
+    }
 }

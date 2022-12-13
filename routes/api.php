@@ -29,6 +29,8 @@ Route::post('/newrequest', [requestsController::class, 'addRequest']);
 
 Route::get('/pupils/{userid}', [requestsController::class, 'showUserPupils']);
 
+Route::get('/pupil/{userid}', [requestsController::class, 'showPupil']);
+
 Route::get('/schools', [schoolsController::class, 'showAllSchools']);
 
 Route::delete('/deleteschool/{id}', [schoolsController::class, 'deleteSchool']);

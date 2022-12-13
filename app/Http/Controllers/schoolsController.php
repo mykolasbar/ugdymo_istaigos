@@ -20,19 +20,28 @@ class schoolsController extends Controller
         Schools::destroy($id);
     }
 
-    public function addSchool(Request $request)
-    {
-        $request->validate([
-            "title"=>"required",
-            "code"=>"required",
-            "address"=>"required",
-        ]);
+    // public function addSchool(Request $request)
+    // {
+    //     $request->validate([
+    //         "title"=>"required",
+    //         "code"=>"required",
+    //         "picture"=>"image|mimes:jpeg,png,jpg,gif,svg",
+    //         "address"=>"required",
+    //     ]);
 
-        $newSchool = new Schools();
-        $newSchool->title = $request->title;
-        $newSchool->code = $request->title;
-        $newSchool->address = $request->address;
-    }
+    //     if ($request->hasFile('picture')) {
+    //         $path = $request->picture->storeAs('storage', $request->picture->getClientOriginalName());
+    //     }
+
+    //     $newSchool = new Schools();
+    //     $newSchool->title = $request->title;
+    //     $newSchool->code = $request->title;
+    //     $newSchool->picture = $path;
+    //     $newSchool->address = $request->address;
+    //     $newSchool->save();
+
+    //     return $path;
+    // }
 
     public function showSingleSchool($id)
     {
@@ -44,11 +53,22 @@ class schoolsController extends Controller
         $request->validate([
             "title"=>"required",
             "code"=>"required",
+            "picture"=>"image|mimes:jpeg,png,jpg,gif,svg",
             "address"=>"required",
         ]);
 
+        if ($request->hasFile('picture')) {
+            $path = $request->picture->storeAs('images', $request->picture->getClientOriginalName());
+        }
+
         $post = Schools::find($id);
-        $post->update($request->all());
+        $post->title = $request->title;
+        $post->code = $request->code;
+        $post->picture = $path;
+        $post->address = $request->address;
+        $post->save();
+
+        // $post->update($request->all());
 
         return $request;
     }
@@ -66,9 +86,14 @@ class schoolsController extends Controller
             "address.required" => "Address field cannot be empty"
         ]);
 
+        if ($request->hasFile('picture')) {
+            $path = $request->picture->storeAs('images', $request->picture->getClientOriginalName());
+        }
+
         $newSchool = new Schools();
         $newSchool->title = $request->title;
         $newSchool->code = $request->code;
+        $newSchool->picture = $path;
         $newSchool->address = $request->address;
         $newSchool->save();
 
