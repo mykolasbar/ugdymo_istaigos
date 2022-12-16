@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Requests;
 use Illuminate\Http\Request;
 use App\Models\RequestsSchools;
@@ -87,9 +88,16 @@ class requestsController extends Controller
 
     public function showUserPupils($userid)
     {
-        $hotels = DB::table('requests')->where('user_id', '=', $userid)->get();
-        return $hotels;
+
+        $requests = Requests::with('requests_schools')->where('user_id', '=', $userid)->get();
+        return $requests;
     }
+
+    // public function showUserPupils($userid)
+    // {
+    //     $hotels = DB::table('requests')->where('user_id', '=', $userid)->get();
+    //     return $hotels;
+    // }
 
     public function confirmRequest($id) {
         $order = RequestsSchools::find($id);
@@ -100,5 +108,10 @@ class requestsController extends Controller
     public function showPupil($id) {
         $pupil = Requests::find($id);
         return $pupil;
+    }
+
+    public function showUserRequests(Request $request, $userid) {
+        $orders = RequestsSchools::with('requests')->whereRelation('requests', 'user_id', '=', $userid)->get();
+        return $orders;
     }
 }

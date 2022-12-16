@@ -43,6 +43,10 @@ Route::post('/addschool', [schoolsController::class, 'newSchool']);
 
 Route::get('/showallrequests', [requestsController::class, 'showAllRequests']);
 
+Route::get('/userpupils/{userid}', [requestsController::class, 'showUserPupils']);
+
+Route::get('/userorders/{userid}', [requestsController::class, 'showUserRequests']);
+
 Route::put('/confirmrequest/{id}', [requestsController::class, 'confirmRequest']);
 
 Route::get('/search', [schoolsController::class, 'searchSchools']);
