@@ -63,32 +63,44 @@ class requestsController extends Controller
             return ['message' => 'Mokinys pridėtas sėkmingai'];
         }
         else return ['message' => 'Toks mokinys jau yra'];
-
     }
 
     public function addRequest(Request $request)
     {
+        if ($request->has('requests_id')) {
 
-        $request->validate([
-            "requests_id"=>"required",
-            "schools_id"=>"required",
-        ]);
+            $request->validate([
+                "requests_id"=>"required",
+                "schools_id"=>"required",
+            ]);
 
-        $newOrder = new RequestsSchools();
-        $newOrder->requests_id = $request->requests_id;
-        $newOrder->schools_id = $request->schools_id;
-        $newOrder->save();
+            $newOrder = new RequestsSchools();
+            $newOrder->requests_id = $request->requests_id;
+            $newOrder->schools_id = $request->schools_id;
+            $newOrder->save();
+        }
+
+        else {
+            $request->validate([
+                "schools_id"=>"required",
+            ]);
+
+            $request_id = Requests::latest()->first()->id;
+
+            $newOrder = new RequestsSchools();
+            $newOrder->requests_id = $request_id;
+            $newOrder->schools_id = $request->schools_id;
+            $newOrder->save();
+        }
     }
 
     public function showAllRequests(Request $request)
     {
-
         return RequestsSchools::with('requests', 'schools')->get();
     }
 
     public function showUserPupils($userid)
     {
-
         $requests = Requests::with('requests_schools')->where('user_id', '=', $userid)->get();
         return $requests;
     }
@@ -105,13 +117,41 @@ class requestsController extends Controller
         $order->save();
     }
 
+    public function makeViewed($userid) {
+        // RequestsSchools::where('viewed', '=', 0)->update(['viewed' => 1]);
+        RequestsSchools::with('requests')->whereRelation('requests', 'user_id', '=', $userid)->update(['viewed' => 1]);
+    }
+
     public function showPupil($id) {
         $pupil = Requests::find($id);
         return $pupil;
     }
 
-    public function showUserRequests(Request $request, $userid) {
-        $orders = RequestsSchools::with('requests')->whereRelation('requests', 'user_id', '=', $userid)->get();
+    public function showUserRequests($userid) {
+        $orders = RequestsSchools::with('requests', 'schools')->whereRelation('requests', 'user_id', '=', $userid)->get();
         return $orders;
     }
+
+    public function deletePupil($id)
+    {
+        Requests::destroy($id);
+    }
+
+    public function editPupil(Request $request, $id) {
+        $request->validate([
+            "idnumber"=>"required",
+            "name"=>"required",
+        ]);
+
+            $updatePupil = Requests::find($id);
+            $updatePupil->idnumber = $request->idnumber;
+            $updatePupil->dateofbirth = $this->getDateOfBirth($request->idnumber);
+            $updatePupil->name = $request->name;
+            $updatePupil->class = $request->class;
+            $updatePupil->user_id = $request->user_id;
+            $updatePupil->save();
+
+            return ['message' => 'Mokinys pridėtas sėkmingai'];
+    }
+
 }

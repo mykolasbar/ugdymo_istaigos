@@ -31,6 +31,10 @@ Route::get('/pupils/{userid}', [requestsController::class, 'showUserPupils']);
 
 Route::get('/pupil/{userid}', [requestsController::class, 'showPupil']);
 
+Route::delete('/deletepupil/{userid}', [requestsController::class, 'deletePupil']);
+
+Route::put('/editpupil/{id}', [requestsController::class, 'editPupil']);
+
 Route::get('/schools', [schoolsController::class, 'showAllSchools']);
 
 Route::delete('/deleteschool/{id}', [schoolsController::class, 'deleteSchool']);
@@ -49,6 +53,8 @@ Route::get('/userorders/{userid}', [requestsController::class, 'showUserRequests
 
 Route::put('/confirmrequest/{id}', [requestsController::class, 'confirmRequest']);
 
+Route::put('/makeviewed/{userid}', [requestsController::class, 'makeViewed']);
+
 Route::get('/search', [schoolsController::class, 'searchSchools']);
 
 
@@ -61,6 +67,6 @@ Route::post('/logout', [authorizationController::class, 'logout'])->middleware('
 
 
 
+Route::get('/forgot-password', function () {return view('auth.forgot-password');})->middleware('guest')->name('password.request');
 
-// Route::get('/countries/{id}', [countriesController::class, 'showSingleCountry']);
 

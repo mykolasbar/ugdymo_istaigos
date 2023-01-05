@@ -19,7 +19,8 @@ class RequestsSchools extends Model
     ];
 
     protected $attributes = [
-        'confirmed' => false
+        'confirmed' => false,
+        'viewed' => false
     ];
 
     public function schools() {
