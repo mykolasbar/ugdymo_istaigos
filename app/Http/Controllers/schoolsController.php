@@ -89,7 +89,8 @@ class schoolsController extends Controller
         ]);
 
         if ($request->hasFile('picture')) {
-            $path = $request->picture->storeAs('images', $request->picture->getClientOriginalName());
+            $path = $request->picture->storeAs('images', $request->picture->getClientOriginalName(), 's3');
+            // $path = $request->picture->storeAs('images', $request->picture->getClientOriginalName());
         }
 
         $newSchool = new Schools();
