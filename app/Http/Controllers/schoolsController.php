@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Schools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class schoolsController extends Controller
 {
@@ -58,7 +59,8 @@ class schoolsController extends Controller
         ]);
 
         if ($request->hasFile('picture')) {
-            $path = $request->picture->storeAs('images', $request->picture->getClientOriginalName(), 's3');
+            // $path = $request->picture->storeAs('s3images', $request->picture->getClientOriginalName(), 's3');
+            $path = Storage::disk('s3')->put('s3images', $request->picture->getClientOriginalName());
         }
 
         $post = Schools::find($id);

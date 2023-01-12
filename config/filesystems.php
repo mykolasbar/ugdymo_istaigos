@@ -71,6 +71,7 @@ return [
 
     'links' => [
         public_path('images') => storage_path('app/images'),
+        public_path('s3images') => storage_path('s3://elasticbeanstalk-eu-west-1-847300314653/.elasticbeanstalk'),
     ],
 
 
