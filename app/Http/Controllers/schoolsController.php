@@ -59,7 +59,7 @@ class schoolsController extends Controller
         ]);
 
         if ($request->hasFile('picture')) {
-            $path = $request->picture->storeAs('images', $request->picture->getClientOriginalName(), 's3');
+            $path = $request->picture->storeAs('s3images', $request->picture->getClientOriginalName(), 's3');
             // $path = Storage::disk('s3')->put('s3images', $request->picture->getClientOriginalName());
         }
 
