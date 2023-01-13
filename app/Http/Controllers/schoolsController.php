@@ -93,13 +93,13 @@ class schoolsController extends Controller
             // $path = $request->picture->storeAs('images', $request->picture->getClientOriginalName(), 's3');
             // $path = $request->picture->storeAs('images', $request->picture->getClientOriginalName());
             // Storage::disk('s3')->setVisibility($path, 'public');
-            $path = $request->file('picture')->storePubliclyAs('images', $request->picture->getClientOriginalName(), 's3');
+            // $path = $request->file('picture')->storePubliclyAs('images', $request->picture->getClientOriginalName(), 's3');
         }
 
         $newSchool = new Schools();
         $newSchool->title = $request->title;
         $newSchool->code = $request->code;
-        $newSchool->picture = $path;
+        $newSchool->picture = $request->picture->getClientOriginalName();
         $newSchool->address = $request->address;
         $newSchool->save();
 
