@@ -60,6 +60,8 @@ class schoolsController extends Controller
 
         if ($request->hasFile('picture')) {
             $path = $request->picture->storeAs('images', $request->picture->getClientOriginalName(), 's3');
+
+            Storage::disk('s3')->setVisibility($path, 'public');
         }
 
         $post = Schools::find($id);
@@ -90,6 +92,7 @@ class schoolsController extends Controller
         if ($request->hasFile('picture')) {
             $path = $request->picture->storeAs('images', $request->picture->getClientOriginalName(), 's3');
             // $path = $request->picture->storeAs('images', $request->picture->getClientOriginalName());
+            Storage::disk('s3')->setVisibility($path, 'public');
         }
 
         $newSchool = new Schools();
