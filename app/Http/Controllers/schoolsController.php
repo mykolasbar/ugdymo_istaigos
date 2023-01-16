@@ -103,8 +103,7 @@ class schoolsController extends Controller
         $newSchool->address = $request->address;
         $newSchool->save();
 
-        return $request;
-
+        return $request->picture;
     }
 
     public function searchSchools(Request $request)
