@@ -90,11 +90,11 @@ class schoolsController extends Controller
         ]);
 
         if ($request->hasFile('picture')) {
-            // $request->picture->storeAs('images', $request->picture->getClientOriginalName(), 's3');
+            $request->picture->storeAs('images', $request->picture->getClientOriginalName(), 's3');
             // $path = $request->picture->storeAs('images', $request->picture->getClientOriginalName());
             // Storage::disk('s3')->setVisibility($path, 'public');
             // $path = $request->file('picture')->storePubliclyAs('images', $request->picture->getClientOriginalName(), 's3');
-            Storage::disk('s3')->put('images.ext', $request->picture);
+            // Storage::disk('s3')->put('images.ext', $request->picture);
 
         }
 
@@ -105,7 +105,7 @@ class schoolsController extends Controller
         $newSchool->address = $request->address;
         $newSchool->save();
 
-        return $request->picture;
+        return Storage::files('s3');
     }
 
     public function searchSchools(Request $request)
