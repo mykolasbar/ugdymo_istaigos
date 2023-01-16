@@ -94,7 +94,7 @@ class schoolsController extends Controller
             // $path = $request->picture->storeAs('images', $request->picture->getClientOriginalName());
             // Storage::disk('s3')->setVisibility($path, 'public');
             // $path = $request->file('picture')->storePubliclyAs('images', $request->picture->getClientOriginalName(), 's3');
-            Storage::put('images.ext', $request->picture);
+            Storage::disk('s3')->put('images.ext', $request->picture);
 
         }
 
