@@ -105,7 +105,7 @@ class schoolsController extends Controller
         $newSchool->address = $request->address;
         $newSchool->save();
 
-        return Storage::files('images');
+        return $request;
     }
 
     public function searchSchools(Request $request)
