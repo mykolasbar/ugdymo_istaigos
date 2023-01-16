@@ -43,7 +43,7 @@ Route::get('/school/{id}', [schoolsController::class, 'showSingleSchool']);
 
 Route::put('/school/{id}', [schoolsController::class, 'updateSchool']);
 
-Route::post('/addschool', [schoolsController::class, 'newSchool']);
+Route::put('/addschool', [schoolsController::class, 'newSchool']);
 
 Route::get('/showallrequests', [requestsController::class, 'showAllRequests']);
 
