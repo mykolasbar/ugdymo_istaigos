@@ -45,7 +45,7 @@ Route::put('/addschool', [schoolsController::class, 'newSchool'])->middleware('a
 
 Route::get('/showallrequests', [requestsController::class, 'showAllRequests']);
 
-Route::get('/userpupils/{userid}', [requestsController::class, 'showUserPupils'])->middleware('auth:sanctum', 'abilities:admin-abilities');
+Route::get('/userpupils/{userid}', [requestsController::class, 'showUserPupils'])->middleware('auth:sanctum', 'abilities:user-abilities');
 
 Route::get('/userorders/{userid}', [requestsController::class, 'showUserRequests'])->middleware('auth:sanctum', 'abilities:user-abilities,admin-abilities');
 
