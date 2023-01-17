@@ -43,7 +43,7 @@ Route::put('/school/{id}', [schoolsController::class, 'updateSchool'])->middlewa
 
 Route::put('/addschool', [schoolsController::class, 'newSchool'])->middleware('auth:sanctum', 'abilities:admin-abilities');
 
-Route::get('/showallrequests', [requestsController::class, 'showAllRequests'])->middleware('auth:sanctum', 'abilities:admin-abilities');
+Route::get('/showallrequests', [requestsController::class, 'showAllRequests']);
 
 Route::get('/userpupils/{userid}', [requestsController::class, 'showUserPupils'])->middleware('auth:sanctum', 'abilities:admin-abilities');
 
