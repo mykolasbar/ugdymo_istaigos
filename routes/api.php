@@ -23,37 +23,35 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/schools', [schoolsController::class, 'showAllSchools']);
 
-Route::post('/newpupil', [requestsController::class, 'newPupil']);
+Route::post('/newpupil', [requestsController::class, 'newPupil'])->middleware('auth:sanctum', 'abilities:user-abilities,admin-abilities');
 
-Route::post('/newrequest', [requestsController::class, 'addRequest']);
+Route::post('/newrequest', [requestsController::class, 'addRequest'])->middleware('auth:sanctum', 'abilities:user-abilities,admin-abilities');
 
-Route::get('/pupils/{userid}', [requestsController::class, 'showUserPupils']);
+Route::get('/pupils/{userid}', [requestsController::class, 'showUserPupils'])->middleware('auth:sanctum', 'abilities:user-abilities,admin-abilities');
 
-Route::get('/pupil/{userid}', [requestsController::class, 'showPupil']);
+Route::get('/pupil/{userid}', [requestsController::class, 'showPupil'])->middleware('auth:sanctum', 'abilities:user-abilities,admin-abilities');
 
-Route::delete('/deletepupil/{userid}', [requestsController::class, 'deletePupil']);
+Route::delete('/deletepupil/{userid}', [requestsController::class, 'deletePupil'])->middleware('auth:sanctum', 'abilities:user-abilities,admin-abilities');
 
-Route::put('/editpupil/{id}', [requestsController::class, 'editPupil']);
+Route::put('/editpupil/{id}', [requestsController::class, 'editPupil'])->middleware('auth:sanctum', 'abilities:user-abilities,admin-abilities');
 
-Route::get('/schools', [schoolsController::class, 'showAllSchools']);
-
-Route::delete('/deleteschool/{id}', [schoolsController::class, 'deleteSchool']);
+Route::delete('/deleteschool/{id}', [schoolsController::class, 'deleteSchool'])->middleware('auth:sanctum', 'abilities:admin-abilities');
 
 Route::get('/school/{id}', [schoolsController::class, 'showSingleSchool']);
 
-Route::put('/school/{id}', [schoolsController::class, 'updateSchool']);
+Route::put('/school/{id}', [schoolsController::class, 'updateSchool'])->middleware('auth:sanctum', 'abilities:admin-abilities');
 
-Route::put('/addschool', [schoolsController::class, 'newSchool']);
+Route::put('/addschool', [schoolsController::class, 'newSchool'])->middleware('auth:sanctum', 'abilities:admin-abilities');
 
-Route::get('/showallrequests', [requestsController::class, 'showAllRequests']);
+Route::get('/showallrequests', [requestsController::class, 'showAllRequests'])->middleware('auth:sanctum', 'abilities:admin-abilities');
 
-Route::get('/userpupils/{userid}', [requestsController::class, 'showUserPupils']);
+Route::get('/userpupils/{userid}', [requestsController::class, 'showUserPupils'])->middleware('auth:sanctum', 'abilities:admin-abilities');
 
-Route::get('/userorders/{userid}', [requestsController::class, 'showUserRequests']);
+Route::get('/userorders/{userid}', [requestsController::class, 'showUserRequests'])->middleware('auth:sanctum', 'abilities:user-abilities,admin-abilities');
 
-Route::put('/confirmrequest/{id}', [requestsController::class, 'confirmRequest']);
+Route::put('/confirmrequest/{id}', [requestsController::class, 'confirmRequest'])->middleware('auth:sanctum', 'abilities:admin-abilities');
 
-Route::put('/makeviewed/{userid}', [requestsController::class, 'makeViewed']);
+Route::put('/makeviewed/{userid}', [requestsController::class, 'makeViewed'])->middleware('auth:sanctum', 'abilities:admin-abilities');
 
 Route::get('/search', [schoolsController::class, 'searchSchools']);
 
