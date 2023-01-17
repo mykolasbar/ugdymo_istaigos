@@ -23,19 +23,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/schools', [schoolsController::class, 'showAllSchools']);
 
-Route::post('/newpupil', [requestsController::class, 'newPupil'])->middleware('auth:sanctum', 'abilities:user-abilities,admin-abilities');
+Route::post('/newpupil', [requestsController::class, 'newPupil'])->middleware('auth:sanctum', 'ability:user-abilities,admin-abilities');
 
-Route::post('/newrequest', [requestsController::class, 'addRequest'])->middleware('auth:sanctum', 'abilities:user-abilities,admin-abilities');
+Route::post('/newrequest', [requestsController::class, 'addRequest'])->middleware('auth:sanctum', 'ability:user-abilities,admin-abilities');
 
-Route::get('/pupils/{userid}', [requestsController::class, 'showUserPupils'])->middleware('auth:sanctum', 'abilities:user-abilities,admin-abilities');
+Route::get('/pupils/{userid}', [requestsController::class, 'showUserPupils'])->middleware('auth:sanctum', 'ability:user-abilities,admin-abilities');
 
-Route::get('/pupil/{userid}', [requestsController::class, 'showPupil'])->middleware('auth:sanctum', 'abilities:user-abilities,admin-abilities');
+Route::get('/pupil/{userid}', [requestsController::class, 'showPupil'])->middleware('auth:sanctum', 'ability:user-abilities,admin-abilities');
 
-Route::delete('/deletepupil/{userid}', [requestsController::class, 'deletePupil'])->middleware('auth:sanctum', 'abilities:user-abilities,admin-abilities');
+Route::delete('/deletepupil/{userid}', [requestsController::class, 'deletePupil'])->middleware('auth:sanctum', 'ability:user-abilities,admin-abilities');
 
-Route::put('/editpupil/{id}', [requestsController::class, 'editPupil'])->middleware('auth:sanctum', 'abilities:user-abilities,admin-abilities');
+Route::put('/editpupil/{id}', [requestsController::class, 'editPupil'])->middleware('auth:sanctum', 'ability:user-abilities,admin-abilities');
 
-Route::delete('/deleteschool/{id}', [schoolsController::class, 'deleteSchool'])->middleware('auth:sanctum', 'abilities:admin-abilities');
+Route::delete('/deleteschool/{id}', [schoolsController::class, 'deleteSchool'])->middleware('auth:sanctum', 'ability:admin-abilities');
 
 Route::get('/school/{id}', [schoolsController::class, 'showSingleSchool']);
 
