@@ -21,29 +21,6 @@ class schoolsController extends Controller
         Schools::destroy($id);
     }
 
-    // public function addSchool(Request $request)
-    // {
-    //     $request->validate([
-    //         "title"=>"required",
-    //         "code"=>"required",
-    //         "picture"=>"image|mimes:jpeg,png,jpg,gif,svg",
-    //         "address"=>"required",
-    //     ]);
-
-    //     if ($request->hasFile('picture')) {
-    //         $path = $request->picture->storeAs('storage', $request->picture->getClientOriginalName());
-    //     }
-
-    //     $newSchool = new Schools();
-    //     $newSchool->title = $request->title;
-    //     $newSchool->code = $request->title;
-    //     $newSchool->picture = $path;
-    //     $newSchool->address = $request->address;
-    //     $newSchool->save();
-
-    //     return $path;
-    // }
-
     public function showSingleSchool($id)
     {
         return Schools::find($id);

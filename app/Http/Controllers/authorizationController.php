@@ -47,7 +47,6 @@ class authorizationController extends Controller
             if ($user->role === "admin")
                 return response (['user'=>$user, 'token' => $user->createToken('appToken', ['admin-abilities'])->plainTextToken]);
                 // return "admin";
-
         }
     }
 

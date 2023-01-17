@@ -105,12 +105,6 @@ class requestsController extends Controller
         return $requests;
     }
 
-    // public function showUserPupils($userid)
-    // {
-    //     $hotels = DB::table('requests')->where('user_id', '=', $userid)->get();
-    //     return $hotels;
-    // }
-
     public function confirmRequest($id) {
         $order = RequestsSchools::find($id);
         $order->confirmed = true;
