@@ -29,10 +29,10 @@ class schoolsController extends Controller
     public function updateSchool(Request $request, $id)
     {
         $request->validate([
-            // "title"=>"required",
-            // "code"=>"required",
+            "title"=>"required",
+            "code"=>"required",
             "picture"=>"image|mimes:jpeg,png,jpg,gif,svg",
-            // "address"=>"required",
+            "address"=>"required",
         ]);
 
         if ($request->hasFile('picture')) {
@@ -42,10 +42,10 @@ class schoolsController extends Controller
         }
 
         $post = Schools::find($id);
-        if($request->has('title')) $post->title = $request->title;
-        if($request->has('code')) $post->code = $request->code;
-        if($request->has('picture')) $post->picture = $path;
-        if($request->has('address')) $post->address = $request->address;
+        if($request->has('title') and $request->filled('title')) $post->title = $request->title;
+        if($request->has('code') and $request->filled('code')) $post->code = $request->code;
+        if($request->has('picture') and $request->filled('picture')) $post->picture = $path;
+        if($request->has('address') and $request->filled('address')) $post->address = $request->address;
         $post->save();
 
         // $post->update($request->all());
