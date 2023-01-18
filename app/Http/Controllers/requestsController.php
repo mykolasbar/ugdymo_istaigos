@@ -133,15 +133,17 @@ class requestsController extends Controller
 
     public function editPupil(Request $request, $id) {
         $request->validate([
-            "idnumber"=>"required",
-            "name"=>"required",
+            // "idnumber"=>"required",
+            // "name"=>"required",
+            "user_id"=>"required"
         ]);
 
             $updatePupil = Requests::find($id);
-            $updatePupil->idnumber = $request->idnumber;
-            $updatePupil->dateofbirth = $this->getDateOfBirth($request->idnumber);
-            $updatePupil->name = $request->name;
-            $updatePupil->class = $request->class;
+            if ($request->idnumber != null or $request->idnumber != '')
+                {$updatePupil->idnumber = $request->idnumber;
+                $updatePupil->dateofbirth = $this->getDateOfBirth($request->idnumber);};
+            if ($request->name != null or $request->name != '') $updatePupil->name = $request->name;
+            if ($request->class != null or $request->class != '') $updatePupil->class = $request->class;
             $updatePupil->user_id = $request->user_id;
             $updatePupil->save();
 
