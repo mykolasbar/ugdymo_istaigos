@@ -42,10 +42,10 @@ class schoolsController extends Controller
         }
 
         $post = Schools::find($id);
-        $post->title = $request->title;
-        $post->code = $request->code;
+        if($request->has('title')) $post->title = $request->title;
+        if($request->has('code')) $post->code = $request->code;
         $post->picture = $path;
-        $post->address = $request->address;
+        if($request->has('address')) $post->address = $request->address;
         $post->save();
 
         // $post->update($request->all());
