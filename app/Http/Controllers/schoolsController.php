@@ -44,7 +44,7 @@ class schoolsController extends Controller
         $post = Schools::find($id);
         if($request->has('title')) $post->title = $request->title;
         if($request->has('code')) $post->code = $request->code;
-        $post->picture = $path;
+        if($request->has('picture')) $post->picture = $path;
         if($request->has('address')) $post->address = $request->address;
         $post->save();
 
