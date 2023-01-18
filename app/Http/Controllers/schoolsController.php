@@ -40,6 +40,7 @@ class schoolsController extends Controller
 
             Storage::disk('s3')->setVisibility($path, 'public');
         }
+        else $path = null;
 
         $post = Schools::find($id);
         if($request->has('title') and $request->filled('title')) $post->title = $request->title;
