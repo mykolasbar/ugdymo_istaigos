@@ -132,10 +132,10 @@ class requestsController extends Controller
     }
 
     public function editPupil(Request $request, $id) {
-        // $request->validate([
-        //     "idnumber"=>"required",
-        //     "name"=>"required",
-        // ]);
+        $request->validate([
+            "idnumber"=>"required",
+            "name"=>"required",
+        ]);
 
             $updatePupil = Requests::find($id);
             $updatePupil->idnumber = $request->idnumber;
