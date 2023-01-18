@@ -28,12 +28,12 @@ class schoolsController extends Controller
 
     public function updateSchool(Request $request, $id)
     {
-        // $request->validate([
-        //     "title"=>"required",
-        //     "code"=>"required",
-        //     "picture"=>"image|mimes:jpeg,png,jpg,gif,svg",
-        //     "address"=>"required",
-        // ]);
+        $request->validate([
+            // "title"=>"required",
+            // "code"=>"required",
+            "picture"=>"image|mimes:jpeg,png,jpg,gif,svg",
+            // "address"=>"required",
+        ]);
 
         if ($request->hasFile('picture')) {
             $path = $request->picture->storeAs('images', $request->picture->getClientOriginalName(), 's3');
