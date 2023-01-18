@@ -29,10 +29,10 @@ class schoolsController extends Controller
     public function updateSchool(Request $request, $id)
     {
         $request->validate([
-            "title"=>"required",
-            "code"=>"required",
+            // "title"=>"required",
+            // "code"=>"required",
             "picture"=>"image|mimes:jpeg,png,jpg,gif,svg",
-            "address"=>"required",
+            // "address"=>"required",
         ]);
 
         if ($request->hasFile('picture')) {
