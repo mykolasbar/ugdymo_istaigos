@@ -4,14 +4,13 @@ A school management system with registered user and admin roles, in addition to 
 
 Pupil's date of birth automatically extracted, appropriately formatted and stored on the database from the pupil's personal ID code.
 
+<b>UPDATE</b>: Added "User account" section with page for the pupils added by the user, functionality for updating pupil's data, requests page with a list of user's requests, account settings page (ability to change password and other info to be added). Added notifications functionality (user receives a notification when admin confirms a request from a specific pupil to join a school). A lot of UI appearance updates, including version for mobile. App deployed on Heroku, images uploaded by admin stored on AWS S3.
+
 React.js used for frontend and Laravel for backend. Used token-based authentication with sanctum, in addition to protected routes on the frontend.
 
 This is the backend repository. You can access the frontend repository <a href = "https://github.com/mykolasbar/ugdymo_istaigos_fe/">here</a>.
 
-<h2>Instructions for launch</h2>
-
 <h2>Functionality</h2>
-
 
 <ul>
     <li>User roles:<li>
@@ -30,7 +29,10 @@ This is the backend repository. You can access the frontend repository <a href =
             <li>View schools</li>
             <li>Search schools (by their name)</li>
             <li>Add one or more pupils</li>
+            <li>User section with lists of pupils added and requests made</li>
+            <li>Edit pupil info or delete pupil</li>
             <li>Send a request for a pupil to be registered to a particular school</li>
+            <li>Notifications functionality</li>
         </ul>
     <li>Admin</li>
         <ul>
@@ -43,7 +45,9 @@ This is the backend repository. You can access the frontend repository <a href =
 
 <h2>Launch instructions</h2>
 
-The project is not deployed online, so in order to view it, you will have to download it from github and launch it on the live server.
+<b>UPDATE</b>: App is currently accessible at: <a href="https://ugdymoistaigosfe.herokuapp.com/" target="_blank">https://ugdymoistaigosfe.herokuapp.com/</a>
+
+Previous launch instructions (deprecated)
 
 <ul>
     <li>Clone or download the github repository and put it in your xampp htdocs folder</li>
