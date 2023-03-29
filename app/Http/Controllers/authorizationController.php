@@ -39,8 +39,6 @@ class authorizationController extends Controller
 
         // return response (['user'=>$user, 'token' => $user->createToken('appToken', ['user-abilities'])->plainTextToken]);
 
-        if ($user == null) return 'Neteisingi prisijungimo duomenys';
-
         if ($user && Auth::attempt(['email' => $fields['email'], 'password' => $fields['password']])) {
             if ($user->role === "user")
                 return response (['user'=>$user, 'token' => $user->createToken('appToken', ['user-abilities'])->plainTextToken]);
@@ -50,6 +48,7 @@ class authorizationController extends Controller
                 return response (['user'=>$user, 'token' => $user->createToken('appToken', ['admin-abilities'])->plainTextToken]);
                 // return "admin";
         }
+        else return 'Neteisingi prisijungimo duomenys';
     }
 
     public function logout()
