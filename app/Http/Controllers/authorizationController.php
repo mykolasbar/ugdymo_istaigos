@@ -35,7 +35,7 @@ class authorizationController extends Controller
             'password'=>'required',
         ]);
 
-        $user = User::where('email', $fields['email'])->first();
+        $user = User::where('email', $fields['email'])->firstOrFail();
 
         // return response (['user'=>$user, 'token' => $user->createToken('appToken', ['user-abilities'])->plainTextToken]);
 
