@@ -48,7 +48,7 @@ class authorizationController extends Controller
                 return response (['user'=>$user, 'token' => $user->createToken('appToken', ['admin-abilities'])->plainTextToken]);
                 // return "admin";
         }
-        else return 'Neteisingi prisijungimo duomenys';
+        else return ['response' => 'Neteisingi prisijungimo duomenys'];
     }
 
     public function logout()
